@@ -1,23 +1,30 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const config = require('../config');
+const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
 
 const app = express();
 
-// Configuración de la base de datos
-mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Conexión a la base de datos establecida'))
-  .catch((err) => console.error('Error al conectar a la base de datos', err));
-
-// Configuración del middleware
-app.use(express.urlencoded({ extended: true }));
+// Middleware
+app.use(express.static('public'));
 app.use(express.json());
+app.use(cookieParser());
 
-// Configuración de las rutas
+// Database connection
+const dbURI = 'mongodb://localhost/authenticate-app';
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => app.listen(3000))
+  .catch(err => console.log(err));
+
+// Routes
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
 app.use('/auth', authRoutes);
 
-// Inicio del servidor
-app.listen(config.port, () => {
-  console.log(`Servidor corriendo en el puerto ${config.port}`);
+// Error middleware
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(500).send('Something went wrong');
 });
