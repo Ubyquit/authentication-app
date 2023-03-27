@@ -1,7 +1,3 @@
-const User = require('../models/User');
-const jwt = require('jsonwebtoken');
-const config = require('../../config');
-
 // Función para registrar un usuario
 async function register(req, res) {
   const { name, email, password } = req.body;
@@ -72,7 +68,22 @@ async function login(req, res) {
   }
 }
 
+// Función para obtener la información del usuario actual
+async function getUser(req, res) {
+  try {
+    // Buscamos el usuario en la base de datos
+    const user = await User.findById(req.user.id).select('-password');
+
+    // Enviamos los datos del usuario como respuesta
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: 'Error al obtener la información del usuario' });
+  }
+}
+
 module.exports = {
   register,
-  login
+  login,
+  getUser
 };

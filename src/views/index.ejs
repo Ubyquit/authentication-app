@@ -8,12 +8,12 @@
 </head>
 <body>
   <h1>Bienvenido a la aplicación de autenticación</h1>
-  <% if (user) { %>
-    <p>Bienvenido, <%= user.name %> (<%= user.email %>)</p>
+ 
+    <p>Bienvenido</p>
     <a href="/auth/logout">Cerrar sesión</a>
-  <% } else { %>
+ 
     <a href="/auth/login">Iniciar sesión</a>
     <a href="/auth/register">Registrarse</a>
-  <% } %>
+ 
 </body>
 </html>
