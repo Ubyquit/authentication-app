@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
+const config = require('../config');
 
 const app = express();
 
@@ -11,9 +12,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Database connection
-const dbURI = 'mongodb://localhost/authenticate-app';
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => app.listen(3000))
+mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => app.listen(config.port))
   .catch(err => console.log(err));
 
 // Routes
