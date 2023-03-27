@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+  </head>
+  <body>
+    <h1>Registro</h1>
+    <% if (message) { %>
+      <p><%= message %></p>
+    <% } %>
+    <form method="post" action="/auth/register">
+      <p>
+        <label for="name">Nombre:</label>
+        <input type="text" name="name" id="name" required>
+      </p>
+      <p>
+        <label for="email">Correo electrónico:</label>
+        <input type="email" name="email" id="email" required>
+      </p>
+      <p>
+        <label for="password">Contraseña:</label>
+        <input type="password" name="password" id="password" required>
+      </p>
+      <button type="submit">Registrarse</button>
+    </form>
+  </body>
+</html>
