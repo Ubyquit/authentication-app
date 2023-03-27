@@ -4,18 +4,18 @@ Una aplicación que permite a los usuarios registrarse, iniciar sesión y cerrar
 
 ## Estructura del Proyecto
 
-- `src/`: Contiene todo el código fuente de la aplicación.
-  - `index.js`: Punto de entrada de la aplicación.
-  - `models/`: Contiene los modelos de Mongoose para la base de datos.
-    - `user.js`: Modelo de usuario.
-  - `routes/`: Contiene las rutas de la aplicación.
-    - `auth.js`: Rutas de autenticación (registro, inicio de sesión y cierre de sesión).
-  - `views/`: Contiene las vistas de la aplicación.
-    - `login.ejs`: Vista de inicio de sesión.
-    - `register.ejs`: Vista de registro.
-- `package.json`: Archivo de configuración de npm.
-- `.env`: Archivo de variables de entorno.
-- `config.js`: Archivo de configuración de la aplicación.
+* `src/`: Contiene todo el código fuente de la aplicación.
+* `index.js`: Punto de entrada de la aplicación.
+* `config.js`: Archivo de configuración de la aplicación.
+* `models/`: Contiene los modelos de Mongoose para la base de datos.
+  * `user.js`: Modelo de usuario.
+* `routes/`: Contiene las rutas de la aplicación.
+  * `auth.js`: Rutas de autenticación (registro, inicio de sesión y cierre de sesión).
+* `views/`: Contiene las vistas de la aplicación.
+  * `login.ejs`: Vista de inicio de sesión.
+  * `register.ejs`: Vista de registro.
+* `.env`: Archivo de variables de entorno.
+* `package.json`: Archivo de configuración de npm.
 
 ## Estructura de la Base de Datos
 
