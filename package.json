@@ -1,0 +1,11 @@
+{
+  "name": "authentication-app",
+  "version": "1.0.0",
+  "description": "mi super app de autrnticación realizado con CHATGPT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ubyquit",
+  "license": "ISC"
+}
