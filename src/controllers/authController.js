@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const bcrypt = require('bcrypt');
 
 // Función para renderizar la vista principal
 function getIndex(req, res) {
@@ -16,37 +17,15 @@ function getLogin(req, res) {
 
 // Función para registrar un usuario
 async function register(req, res) {
-  const { name, email, password } = req.body;
-
   try {
-    // Buscamos si el usuario ya existe en la base de datos
-    const user = await User.findOne({ email });
-
-    // Si ya existe, retornamos un error
-    if (user) {
-      return res.status(400).json({ msg: 'El usuario ya existe' });
-    }
-
-    // Si no existe, creamos un nuevo usuario
-    const newUser = new User({
-      name,
-      email,
-      password
-    });
-
-    // Guardamos el nuevo usuario en la base de datos
-    await newUser.save();
-
-    // Generamos un token para el nuevo usuario
-    const token = jwt.sign({ id: newUser._id }, config.secret, {
-      expiresIn: 60 * 60 * 24 // Caduca en 24 horas
-    });
-
-    // Enviamos el token y los datos del nuevo usuario como respuesta
-    res.status(200).json({ token, user: { id: newUser._id, name: newUser.name, email: newUser.email } });
+    const { name, email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({ name, email, password: hashedPassword });
+    await user.save();
+    res.redirect('/login');
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ msg: 'Error al registrar el usuario' });
+    console.log(error);
+    res.render('register', { message: 'Error creating user' });
   }
 }
 
