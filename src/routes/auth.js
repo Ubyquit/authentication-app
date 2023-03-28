@@ -20,7 +20,6 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', authController.login);
-
 router.get('/register', authController.getRegister);
 router.get('/login', authController.getLogin);
 

@@ -7,6 +7,8 @@ Una aplicación que permite a los usuarios registrarse, iniciar sesión y cerrar
 * `src/`: Contiene todo el código fuente de la aplicación.
 * `index.js`: Punto de entrada de la aplicación.
 * `config.js`: Archivo de configuración de la aplicación.
+* `controllers`:
+  * `authControllers.js`:
 * `models/`: Contiene los modelos de Mongoose para la base de datos.
   * `user.js`: Modelo de usuario.
 * `routes/`: Contiene las rutas de la aplicación.
@@ -24,11 +26,16 @@ Una aplicación que permite a los usuarios registrarse, iniciar sesión y cerrar
 
 ## Dependencias
 
-- express: Framework para Node.js que permite crear aplicaciones web.
-- mongoose: Biblioteca de Node.js que permite interactuar con MongoDB.
-- express-session: Biblioteca de Node.js que permite crear sesiones de usuario.
-- bcrypt: Biblioteca de Node.js que permite encriptar contraseñas.
-- connect-flash: Biblioteca de Node.js que permite mostrar mensajes al usuario.
+
+- connect-flash: Un middleware para Express que permite enviar mensajes flash a la vista.
+- connect-mongodb-session: Una tienda de sesión para Express que utiliza MongoDB como almacenamiento de sesiones.
+- cookie-parser: Un middleware para Express que analiza las cookies en las solicitudes entrantes.
+- dotenv: Una biblioteca para cargar variables de entorno desde un archivo .env.
+- ejs: Un motor de plantillas para JavaScript que permite generar HTML dinámico.
+- express: Un marco de aplicaciones web para Node.js que proporciona una infraestructura para manejar solicitudes HTTP.
+- express-session: Un middleware para Express que proporciona soporte para sesiones en la aplicación.
+- jsonwebtoken: Una biblioteca para crear y verificar tokens de JSON Web.
+- mongoose: Una biblioteca de modelado de objetos para MongoDB que permite interactuar con la base de datos de una manera orientada a objetos.
 
 ## Instalación
 
