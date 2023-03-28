@@ -20,7 +20,7 @@ async function register(req, res) {
   try {
     const { name, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ name, email, password: hashedPassword });
+    const user = new User({ name, email, password: hashedPassword, date });
     await user.save();
     res.redirect('/login');
   } catch (error) {
