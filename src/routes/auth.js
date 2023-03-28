@@ -1,13 +1,16 @@
 const express = require('express');
 const authController = require('../controllers/authController');
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 const router = express.Router();
+const User = require('../models/user');
+
 
 router.post('/register', async (req, res) => {
     try {
-      const { name, email, password } = req.body;
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const user = new User({ name, email, password: hashedPassword, date });
+      const { name, email, password,date } = req.body;
+      //const hashedPassword = await bcrypt.hash(password, 10);
+      //const user = new User({ name, email, password: hashedPassword, date });
+      const user = new User({ name, email, password, date });
       await user.save();
       res.redirect('/login');
     } catch (error) {
