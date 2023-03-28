@@ -1,23 +1,23 @@
 const express = require('express');
 const authController = require('../controllers/authController');
-//const bcrypt = require('bcrypt');
+const bodyParser = require('body-parser');
 const router = express.Router();
 const User = require('../models/user');
 
+// Parse request body
+router.use(bodyParser.urlencoded({ extended: true }));
 
 router.post('/register', async (req, res) => {
-    try {
-      const { name, email, password,date } = req.body;
-      //const hashedPassword = await bcrypt.hash(password, 10);
-      //const user = new User({ name, email, password: hashedPassword, date });
-      const user = new User({ name, email, password, date });
-      await user.save();
-      res.redirect('/login');
-    } catch (error) {
-      console.log(error);
-      res.render('register', { message: 'Error creating user' });
-    }
-  });
+  try {
+    const { name, email, password, date } = req.body;
+    const user = new User({ name, email, password, date });
+    await user.save();
+    res.redirect('/login');
+  } catch (error) {
+    console.log(error);
+    res.render('register', { message: 'Error creating user' });
+  }
+});
 
 router.post('/login', authController.login);
 
