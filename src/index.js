@@ -2,11 +2,25 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const config = require('../config');
-//app.use('/auth', authRoutes);
 const indexRoutes = require('./routes/index');
 const authRoutes = require('./routes/auth');
 
 const app = express();
+
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+
+const store = new MongoDBStore({
+  uri: 'mongodb://localhost:27017/authentication-app',
+  collection: 'sessions'
+});
+
+app.use(session({
+  secret: 'your secret key',
+  resave: false,
+  saveUninitialized: false,
+  store: store
+}));
 
 // Middleware
 app.use(express.static('public'));
