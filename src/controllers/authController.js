@@ -1,3 +1,5 @@
+const User = require('../models/user');
+
 // Función para renderizar la vista principal
 function getIndex(req, res) {
   res.render('index');
@@ -11,7 +13,6 @@ function getRegister(req, res) {
 function getLogin(req, res) {
   res.render('login', { message: 'Invalid username or password' });
 }
-
 
 // Función para registrar un usuario
 async function register(req, res) {
