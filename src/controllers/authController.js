@@ -1,3 +1,18 @@
+// Función para renderizar la vista principal
+function getIndex(req, res) {
+  res.render('index');
+}
+// Función para renderizar la vista register
+function getRegister(req, res) {
+  res.render('register', { message: 'Invalid username or password'});
+}
+
+// Función para renderizar la vista login
+function getLogin(req, res) {
+  res.render('login', { message: 'Invalid username or password' });
+}
+
+
 // Función para registrar un usuario
 async function register(req, res) {
   const { name, email, password } = req.body;
@@ -85,5 +100,8 @@ async function getUser(req, res) {
 module.exports = {
   register,
   login,
-  getUser
+  getUser,
+  getIndex,
+  getRegister,
+  getLogin
 };

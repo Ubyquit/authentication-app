@@ -1,8 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const authRoutes = require('./routes/auth');
 const config = require('../config');
+//app.use('/auth', authRoutes);
+const indexRoutes = require('./routes/index');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 
@@ -23,9 +25,6 @@ mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: t
 app.get('/', (req, res) => {
   res.render('index');
 });
-
-//app.use('/auth', authRoutes);
-const indexRoutes = require('./routes/index');
 
 app.use('/', indexRoutes);
 app.use('/auth', authRoutes);
