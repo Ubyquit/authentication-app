@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const bcrypt = require('bcrypt');
+
 
 // Función para renderizar la vista principal
 function getIndex(req, res) {
@@ -13,20 +13,6 @@ function getRegister(req, res) {
 // Función para renderizar la vista login
 function getLogin(req, res) {
   res.render('login', { message: 'Invalid username or password' });
-}
-
-// Función para registrar un usuario
-async function register(req, res) {
-  try {
-    const { name, email, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ name, email, password: hashedPassword, date });
-    await user.save();
-    res.redirect('/login');
-  } catch (error) {
-    console.log(error);
-    res.render('register', { message: 'Error creating user' });
-  }
 }
 
 // Función para iniciar sesión
@@ -78,7 +64,6 @@ async function getUser(req, res) {
 }
 
 module.exports = {
-  register,
   login,
   getUser,
   getIndex,
